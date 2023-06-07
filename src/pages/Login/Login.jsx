@@ -8,14 +8,17 @@ const Login = () => {
     const onSubmit = data => console.log(data);
 
     return (
-        <main className='py-20 bg-gray-100 border-b-2'>
-            <div className="w-full max-w-sm p-4 border bg-white border-gray-200 rounded-lg shadow sm:p-6 md:p-8 mx-auto">
+        <main className='py-20 px-4 bg-gray-100 border-b-2'>
+            <div className="w-full max-w-sm p-6 border bg-white border-gray-200 rounded-lg shadow md:p-8 mx-auto">
                 <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
                     <div>
                         <h5 className="text-4xl font-bold text-gray-900 text-center">Sign In</h5>
                     </div>
-                    <p className='text-center text-lg text-gray-700'>Log In with</p>
-                    <img className='w-8 cursor-pointer mx-auto' src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2008px-Google_%22G%22_Logo.svg.png" alt="" />
+                    <div>
+                        <p className="text-sm text-center text-gray-400 mb-3">Sing in with your social media account</p>
+                        <img className='w-8 cursor-pointer mx-auto' src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2008px-Google_%22G%22_Logo.svg.png" alt="" />
+                    </div>
+                    <div className="divider">OR</div>
                     <div>
                         <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">Your email</label>
                         <input {...register("email", { required: true })} type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm px-8 rounded-full py-3 block w-full" placeholder="name@mail.com" required></input>
@@ -42,7 +45,7 @@ const Login = () => {
                     <button type="submit" className="primary-btn w-full">Login to your account</button>
 
                     <Link to='/register'>
-                        <div className="text-sm font-medium text-gray-500 dark:text-gray-300 mt-4 text-center">
+                        <div className="text-sm font-medium text-gray-500 dark:text-gray-300 mt-8 text-center">
                             Not registered? <span className="text-orange-600 hover:underline">Create account</span>
                         </div>
                     </Link>
