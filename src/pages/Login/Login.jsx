@@ -1,15 +1,21 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { FaEyeSlash, FaEye } from "react-icons/fa";
 
 const Login = () => {
     const [showError, setError] = useState('');
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => console.log(data);
+    const [showPassword, setShowPassword] = useState(false);
+
+    const handleTogglePassword = () => {
+        setShowPassword(!showPassword);
+    };
 
     return (
         <main className='py-20 px-4 bg-gray-100 border-b-2'>
-            <div className="w-full max-w-sm p-6 border bg-white border-gray-200 rounded-lg shadow md:p-8 mx-auto">
+            <div className="w-full max-w-md p-6 border bg-white border-gray-200 rounded-lg shadow md:p-8 mx-auto">
                 <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
                     <div>
                         <h5 className="text-4xl font-bold text-gray-900 text-center">Sign In</h5>
@@ -28,7 +34,12 @@ const Login = () => {
                     </div>
                     <div>
                         <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Your password</label>
-                        <input {...register("password", { required: true })} type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm px-8 rounded-full py-3 block w-full" required></input>
+                        <div className="flex items-center">
+                            <input {...register("password", { required: true })} type={showPassword ? "text" : "password"} name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm px-8 rounded-full py-3 block w-full" required></input>
+                            <span className="-ml-8 cursor-pointer" onClick={handleTogglePassword}>
+                                {showPassword ? <FaEyeSlash /> : <FaEye />}
+                            </span>
+                        </div>
                         {
                             showError ? <p className='mt-2 text-red-600'>Wrong Password</p> : ''
                         }

@@ -9,7 +9,7 @@ const Registration = () => {
 
     return (
         <main className='py-20 px-4 bg-gray-100 border-b-2'>
-            <div className="w-full max-w-sm p-6 border bg-white border-gray-200 rounded-lg shadow md:p-8 mx-auto">
+            <div className="w-full max-w-md p-6 border bg-white border-gray-200 rounded-lg shadow md:p-8 mx-auto">
                 <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
                     <div>
                         <h5 className="text-4xl font-bold text-gray-900 text-center">Register</h5>
