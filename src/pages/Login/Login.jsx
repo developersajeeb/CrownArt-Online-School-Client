@@ -1,13 +1,24 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
+import { AuthContext } from "../../providers/AuthProviders";
 
 const Login = () => {
+    const {singIn} = useContext(AuthContext);
     const [showError, setError] = useState('');
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
     const [showPassword, setShowPassword] = useState(false);
+
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const onSubmit = data => {
+        console.log(data)
+        singIn(data.email, data.password)
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+        })
+    };
+
 
     const handleTogglePassword = () => {
         setShowPassword(!showPassword);
