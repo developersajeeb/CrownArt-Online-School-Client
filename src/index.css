@@ -20,3 +20,7 @@ label,
 input {
   font-family: 'Roboto', sans-serif;
 }
+
+.primary-color {
+  color: #d05b2d;
+}
