@@ -35,5 +35,5 @@ li {
 }
 
 .primary-btn{
-  @apply bg-[#d05b2d] px-8 py-2 text-white rounded-full hover:bg-[#febb64] duration-300 hover:text-black
+  @apply bg-[#d05b2d] px-8 py-3 font-semibold text-white rounded-full hover:bg-[#febb64] duration-300 hover:text-black;
 }
