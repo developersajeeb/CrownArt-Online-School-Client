@@ -23,6 +23,7 @@ const Registration = () => {
     const password = watch("password");
     const confirmPass = watch("confirmPass");
 
+
     return (
         <main className="py-20 px-4 bg-gray-100 border-b-2">
             <div className="w-full max-w-md p-6 border bg-white border-gray-200 rounded-lg shadow md:p-8 mx-auto">
@@ -46,15 +47,19 @@ const Registration = () => {
                             Your Password
                         </label>
                         <input
-                            {...register("password", { required: true })}
+                            {...register("password", {
+                                required: true,
+                                pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{6}/
+                            })}
                             type="password"
                             name="password"
                             id="password"
                             placeholder="••••••••"
-                            className={`bg-gray-50 border ${errors.password || showError ? "border-red-500" : "border-gray-300"} text-gray-900 text-sm px-8 rounded-full py-3 block w-full`}
+                            className={`bg-gray-50 border text-gray-900 text-sm px-8 rounded-full py-3 block w-full`}
                             required
                         />
-                        {showError && <span className="text-red-500">Passwords do not match</span>}
+                        {errors.password?.type === 'pattern' ?
+                            <span className="text-sm text-red-500">Password must one: A,a,#,min 6 characters</span> : ''}
                     </div>
                     <div>
                         <label htmlFor="confirmPass" className="block mb-2 text-sm font-medium text-gray-900">
