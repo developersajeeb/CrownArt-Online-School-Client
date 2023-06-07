@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
-const Login = () => {
-    const [showError, setError] = useState('');
+const Registration = () => {
+    const [showError, setError] = useState(null);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => console.log(data);
 
@@ -12,26 +12,32 @@ const Login = () => {
             <div className="w-full max-w-sm p-6 border bg-white border-gray-200 rounded-lg shadow md:p-8 mx-auto">
                 <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
                     <div>
-                        <h5 className="text-4xl font-bold text-gray-900 text-center">Sign In</h5>
+                        <h5 className="text-4xl font-bold text-gray-900 text-center">Register</h5>
                     </div>
                     <div>
-                        <p className="text-sm text-center text-gray-400 mb-3">Sing in with your social media account</p>
+                        <p className="text-sm text-center text-gray-400 mb-3">Sing up with your social media account</p>
                         <img className='w-8 cursor-pointer mx-auto' src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2008px-Google_%22G%22_Logo.svg.png" alt="" />
                     </div>
                     <div className="divider">OR</div>
                     <div>
-                        <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">Your email</label>
+                        <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">Your Email</label>
                         <input {...register("email", { required: true })} type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm px-8 rounded-full py-3 block w-full" placeholder="name@mail.com" required></input>
-                        {
-                            showError ? <p className='mt-2 text-red-600'>User Not Found</p> : ''
-                        }
+                        
                     </div>
                     <div>
-                        <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Your password</label>
+                        <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Your Password</label>
                         <input {...register("password", { required: true })} type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm px-8 rounded-full py-3 block w-full" required></input>
-                        {
-                            showError ? <p className='mt-2 text-red-600'>Wrong Password</p> : ''
-                        }
+                        
+                    </div>
+                    <div>
+                        <label htmlFor="confirmPass" className="block mb-2 text-sm font-medium text-gray-900">Confirm Password</label>
+                        <input {...register("confirmPass", { required: true })} type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm px-8 rounded-full py-3 block w-full" required></input>
+                        
+                    </div>
+                    <div>
+                        <label htmlFor="photoUrl" className="block mb-2 text-sm font-medium text-gray-900">Photo URL</label>
+                        <input {...register("photoUrl", { required: true })} type="url" name="password" id="password" placeholder="Photo url" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm px-8 rounded-full py-3 block w-full" required></input>
+                        
                     </div>
                     <div className="flex items-start">
                         <div className="flex items-start">
@@ -44,7 +50,7 @@ const Login = () => {
                     </div>
                     <button type="submit" className="primary-btn w-full">Login to your account</button>
 
-                    <Link to='/registration'>
+                    <Link to='/login'>
                         <div className="text-sm font-medium text-gray-500 dark:text-gray-300 mt-8 text-center">
                             Not registered? <span className="text-orange-600 hover:underline">Create account</span>
                         </div>
@@ -55,4 +61,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Registration;
