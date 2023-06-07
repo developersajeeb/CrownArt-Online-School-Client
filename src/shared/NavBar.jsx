@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { Spin as Hamburger } from 'hamburger-react'
 import { Link, NavLink } from 'react-router-dom';
-import { FaSignOutAlt } from "react-icons/fa";
+import { FaSignOutAlt, FaUserFriends } from "react-icons/fa";
 import logo from '../assets/crown-logo.png'
 
 const NavBar = () => {
@@ -44,12 +44,12 @@ const NavBar = () => {
                             <button className='border-2 p-2 rounded-md'><FaSignOutAlt></FaSignOutAlt></button> */}
                        
                             <NavLink to='/login'>
-                                <li className='text-white bg-transparent border border-gray-400 hover:bg-indigo-500 hover:border-indigo-500 hover:text-white duration-300 font-medium rounded-md text-sm px-5 py-2.5 mr-2'>Login</li>
+                            <li className='primary-btn flex items-center gap-2'><FaUserFriends /> Login</li>
                             </NavLink>
                             
                     </ul>
                 </div>
-                <ul className={`font-medium p-4 pt-3 grid gap-3 w-32 border text-center border-gray-300 rounded-lg bg-[#3F4138] md:hidden absolute duration-500 z-50 ${isOpen ? 'right-2 top-20' : 'hidden'}`}>
+                <ul className={`font-medium p-4 pt-3 grid gap-3 w-40 border text-center border-gray-300 rounded-lg bg-[#3F4138] md:hidden absolute duration-500 z-50 ${isOpen ? 'right-2 top-20' : 'hidden'}`}>
                     <NavLink to='/' className={({ isActive }) => isActive ? 'mini-header-color font-medium' : 'text-white'}>
                         <li>Home</li>
                     </NavLink>
@@ -67,7 +67,7 @@ const NavBar = () => {
                             <button className='border-2 p-2 rounded-md flex justify-center'><FaSignOutAlt></FaSignOutAlt></button> */}
                        
                             <NavLink to='/login'>
-                                <li className='w-full text-white bg-transparent border border-gray-400 hover:bg-indigo-500 hover:border-indigo-500 hover:text-white duration-300 font-medium rounded-md text-sm px-5 py-2.5 mr-2'>Login</li>
+                                <li className='primary-btn flex items-center gap-2'><FaUserFriends /> Login</li>
                             </NavLink>
                     
                 </ul>
