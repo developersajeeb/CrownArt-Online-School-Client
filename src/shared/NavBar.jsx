@@ -30,11 +30,14 @@ const NavBar = () => {
                         <NavLink to='/' className={({ isActive }) => isActive ? 'mini-header-color font-medium' : 'text-white'}>
                             <li>Home</li>
                         </NavLink>
-                        <NavLink to='/add-user' className={({ isActive }) => isActive ? 'mini-header-color font-medium' : 'text-white'}>
-                            <li>Add User</li>
+                        <NavLink to='/instructors' className={({ isActive }) => isActive ? 'mini-header-color font-medium' : 'text-white'}>
+                            <li>Instructors</li>
                         </NavLink>
-                        <NavLink to='/blog' className={({ isActive }) => isActive ? 'mini-header-color font-medium' : 'text-white'}>
-                            <li>Blog</li>
+                        <NavLink to='/classes' className={({ isActive }) => isActive ? 'mini-header-color font-medium' : 'text-white'}>
+                            <li>Classes</li>
+                        </NavLink>
+                        <NavLink to='/dashboard' className={({ isActive }) => isActive ? 'mini-header-color font-medium' : 'text-white'}>
+                            <li>Dashboard</li>
                         </NavLink>
                         <NavLink to='/about' className={({ isActive }) => isActive ? 'mini-header-color font-medium' : 'text-white'}>
                             <li>About</li>
@@ -53,11 +56,14 @@ const NavBar = () => {
                     <NavLink to='/' className={({ isActive }) => isActive ? 'mini-header-color font-medium' : 'text-white'}>
                         <li>Home</li>
                     </NavLink>
-                    <NavLink to='/add-user' className={({ isActive }) => isActive ? 'mini-header-color font-medium' : 'text-white'}>
-                        <li>Add User</li>
+                    <NavLink to='/instructors' className={({ isActive }) => isActive ? 'mini-header-color font-medium' : 'text-white'}>
+                        <li>Instructors</li>
                     </NavLink>
-                    <NavLink to='/blog' className={({ isActive }) => isActive ? 'mini-header-color font-medium' : 'text-white'}>
-                        <li>Blog</li>
+                    <NavLink to='/classes' className={({ isActive }) => isActive ? 'mini-header-color font-medium' : 'text-white'}>
+                        <li>Classes</li>
+                    </NavLink>
+                    <NavLink to='/dashboard' className={({ isActive }) => isActive ? 'mini-header-color font-medium' : 'text-white'}>
+                        <li>Dashboard</li>
                     </NavLink>
                     <NavLink to='/about' className={({ isActive }) => isActive ? 'mini-header-color font-medium' : 'text-white'}>
                         <li>About</li>

@@ -2,7 +2,7 @@ import logo from '../assets/crown-logo.png'
 
 const Footer = () => {
     return (
-        <footer className='bg-[#3F4138] text-white px-4 py-20 md:p-32'>
+        <footer className='bg-[#3F4138] text-white px-4 pt-20 pb-14 md:px-32 md:pt-32'>
             <div>
                 <img className='mx-auto w-72' src={logo} alt="" />
                 <p className='text-center mt-3'>Unlock Your Creativity, Embrace the Canvas</p>
@@ -51,6 +51,7 @@ const Footer = () => {
                     </ul>
                 </div>
             </section>
+            <p className='text-center text-gray-400 mt-20'>CrownArt © 2023. All Rights Reserved.</p>
         </footer>
     );
 };
