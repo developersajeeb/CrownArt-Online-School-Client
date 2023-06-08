@@ -9,7 +9,7 @@ import { ThemeContext } from '../components/ThemeContext/ThemeContext';
 const NavBar = () => {
     const { user, logOut } = useContext(AuthContext);
     const [isOpen, setOpen] = useState(false);
-    
+
     const { themeColor, handleThemeSwitch } = useContext(ThemeContext);
 
     const handleLogOut = () => {
@@ -38,9 +38,11 @@ const NavBar = () => {
                         <NavLink to='/classes' className={({ isActive }) => isActive ? 'mini-header-color font-medium' : 'text-white'}>
                             <li>Classes</li>
                         </NavLink>
-                        <NavLink to='/dashboard' className={({ isActive }) => isActive ? 'mini-header-color font-medium' : 'text-white'}>
-                            <li>Dashboard</li>
-                        </NavLink>
+                        {
+                            user && <NavLink to='/dashboard' className={({ isActive }) => isActive ? 'mini-header-color font-medium' : 'text-white'}>
+                                <li>Dashboard</li>
+                            </NavLink>
+                        }
                         <NavLink to='/about' className={({ isActive }) => isActive ? 'mini-header-color font-medium' : 'text-white'}>
                             <li>About</li>
                         </NavLink>
