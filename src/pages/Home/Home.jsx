@@ -1,3 +1,4 @@
+import SectionHeader from "../../components/SectionHeader";
 import Slider from "./Slider";
 import { FaPalette, FaSchlix, FaDrawPolygon, FaUserAstronaut, FaSketch} from "react-icons/fa";
 
@@ -29,6 +30,9 @@ const Home = () => {
                     </div>
                 </section>
             </header>
+            <main className="px-4 py-20 md:p-32">
+                <SectionHeader miniTitle={'education'} bigTitle={'Popular Classes'}></SectionHeader>
+            </main>
         </>
     );
 };

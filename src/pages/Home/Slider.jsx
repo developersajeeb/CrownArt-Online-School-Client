@@ -32,21 +32,21 @@ const Slider = () => {
             >
                 <SwiperSlide style={{ backgroundImage: `url(${img1})` }} className="py-20 px-6 md:p-48 bg-cover bg-center text-center">
                     <p className="text-white text-xl">Crown Art</p>
-                    <h1 className="text-white font-semibold text-5xl md:text-7xl">Pursue <h3 className="inline-block mini-header-color font-light italic">your</h3> passion. <br /> Create your <h3 className="inline-block mini-header-color font-light italic">life</h3></h1>
+                    <h1 className="text-white font-bold text-5xl md:text-7xl">Pursue <h3 className="inline-block mini-header-color font-light italic">your</h3> passion. <br /> Create your <h3 className="inline-block mini-header-color font-light italic">life</h3></h1>
                     <Link to='/all-dolls'>
                         <button className="primary-btn mt-8">Read More</button>
                     </Link>
                 </SwiperSlide>
                 <SwiperSlide style={{ backgroundImage: `url(${img2})` }} className="py-20 px-6 md:p-48 bg-cover bg-center text-center">
                     <p className="text-white text-xl">Crown Art</p>
-                    <h1 className="text-white font-semibold text-5xl md:text-7xl">Pursue <h3 className="inline-block mini-header-color font-light italic">your</h3> passion. <br /> Create your <h3 className="inline-block mini-header-color font-light italic">life</h3></h1>
+                    <h1 className="text-white font-bold text-5xl md:text-7xl">Pursue <h3 className="inline-block mini-header-color font-light italic">your</h3> passion. <br /> Create your <h3 className="inline-block mini-header-color font-light italic">life</h3></h1>
                     <Link to='/all-dolls'>
                         <button className="primary-btn mt-8">Read More</button>
                     </Link>
                 </SwiperSlide>
                 <SwiperSlide style={{ backgroundImage: `url(${img3})` }} className="py-20 px-6 md:p-48 bg-cover bg-center text-center">
                     <p className="text-white text-xl">Crown Art</p>
-                    <h1 className="text-white font-semibold text-5xl md:text-7xl">Pursue <h3 className="inline-block mini-header-color font-light italic">your</h3> passion. <br /> Create your <h3 className="inline-block mini-header-color font-light italic">life</h3></h1>
+                    <h1 className="text-white font-bold text-5xl md:text-7xl">Pursue <h3 className="inline-block mini-header-color font-light italic">your</h3> passion. <br /> Create your <h3 className="inline-block mini-header-color font-light italic">life</h3></h1>
                     <Link to='/all-dolls'>
                         <button className="primary-btn mt-8">Read More</button>
                     </Link>
