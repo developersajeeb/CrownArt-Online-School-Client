@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProviders";
 
 const Registration = () => {
+    const {createUser} = useContext(AuthContext);
+
     const [showError, setError] = useState(false);
     const {
         register,
@@ -16,8 +19,11 @@ const Registration = () => {
             setError(true); // Set error state to true
             return;
         }
-
-        console.log(data);
+        createUser(data.email, data.password)
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser);
+        })
     };
 
     const password = watch("password");

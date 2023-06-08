@@ -4,6 +4,7 @@ import app from "../firebase/firebase.config";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app)
+// eslint-disable-next-line react/prop-types
 const AuthProviders = ({children}) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -15,7 +16,7 @@ const AuthProviders = ({children}) => {
 
     const singIn = (email, password) => {
         setLoading(true);
-        return signInWithEmailAndPassword(email, password)
+        return signInWithEmailAndPassword(auth, email, password)
     }
 
     const logOut = () => {
