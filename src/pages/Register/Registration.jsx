@@ -5,7 +5,7 @@ import { AuthContext } from "../../providers/AuthProviders";
 import Swal from "sweetalert2";
 
 const Registration = () => {
-    const {createUser} = useContext(AuthContext);
+    const {createUser, googleSingIn} = useContext(AuthContext);
     const [firebaseError, setFirebaseError] = useState('');
     const [showError, setError] = useState(false);
     const {
@@ -37,6 +37,22 @@ const Registration = () => {
     const password = watch("password");
     const confirmPass = watch("confirmPass");
 
+    const handleGoogle = () => {
+        googleSingIn()
+            .then(result => {
+                console.log('done', result);
+                Swal.fire(
+                    'Welcome Back!',
+                    'Login successful',
+                    'success'
+                  )
+                // navigate(from)
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
 
     return (
         <main className="py-20 px-4 bg-gray-100 border-b-2">
@@ -47,7 +63,7 @@ const Registration = () => {
                     </div>
                     <div>
                         <p className="text-sm text-center text-gray-400 mb-3">Sign up with your social media account</p>
-                        <img className="w-8 cursor-pointer mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2008px-Google_%22G%22_Logo.svg.png" alt="" />
+                        <img onClick={handleGoogle} className="w-8 cursor-pointer mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2008px-Google_%22G%22_Logo.svg.png" alt="" />
                     </div>
                     <div className="divider">OR</div>
                     <div>

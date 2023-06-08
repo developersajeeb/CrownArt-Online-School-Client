@@ -6,9 +6,10 @@ import { AuthContext } from "../../providers/AuthProviders";
 import Swal from "sweetalert2";
 
 const Login = () => {
-    const {singIn} = useContext(AuthContext);
+    const {singIn, googleSingIn} = useContext(AuthContext);
     const [showError, setError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const [firebaseError, setFirebaseError] = useState('');
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
@@ -22,8 +23,26 @@ const Login = () => {
                 'Login successful',
                 'success'
               )
+              setFirebaseError('');
         })
+        .catch(error => setFirebaseError(error))
     };
+
+    const handleGoogle = () => {
+        googleSingIn()
+            .then(result => {
+                console.log('done', result);
+                Swal.fire(
+                    'Welcome Back!',
+                    'Login successful',
+                    'success'
+                  )
+                // navigate(from)
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
 
 
     const handleTogglePassword = () => {
@@ -39,7 +58,7 @@ const Login = () => {
                     </div>
                     <div>
                         <p className="text-sm text-center text-gray-400 mb-3">Sing in with your social media account</p>
-                        <img className='w-8 cursor-pointer mx-auto' src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2008px-Google_%22G%22_Logo.svg.png" alt="" />
+                        <img onClick={handleGoogle} className='w-8 cursor-pointer mx-auto' src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2008px-Google_%22G%22_Logo.svg.png" alt="" />
                     </div>
                     <div className="divider">OR</div>
                     <div>
@@ -71,6 +90,7 @@ const Login = () => {
                         <a href="#" className="ml-auto text-sm primary-color hover:underline">Lost Password?</a>
                     </div>
                     <button type="submit" className="primary-btn w-full">Login to your account</button>
+                    {firebaseError ? <p className="text-center text-red-500">User not found</p> : ''}
 
                     <Link to='/registration'>
                         <div className="text-sm font-medium text-gray-500 dark:text-gray-300 mt-8 text-center">
