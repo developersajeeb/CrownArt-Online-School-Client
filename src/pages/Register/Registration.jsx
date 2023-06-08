@@ -5,13 +5,14 @@ import { AuthContext } from "../../providers/AuthProviders";
 import Swal from "sweetalert2";
 
 const Registration = () => {
-    const {createUser, googleSingIn} = useContext(AuthContext);
+    const { createUser, googleSingIn, updateUserProfile } = useContext(AuthContext);
     const [firebaseError, setFirebaseError] = useState('');
     const [showError, setError] = useState(false);
     const {
         register,
         handleSubmit,
         watch,
+        reset,
         formState: { errors },
     } = useForm();
 
@@ -21,17 +22,23 @@ const Registration = () => {
             return;
         }
         createUser(data.email, data.password)
-        .then(result => {
-            const loggedUser = result.user;
-            console.log(loggedUser);
-            setFirebaseError('')
-            Swal.fire(
-                'Register successful',
-                'Your account has been create successful',
-                'success'
-              )
-        })
-        .catch(error => setFirebaseError(error))
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                setFirebaseError('');
+
+                updateUserProfile(data.name, data.photoUrl)
+                    .then(() => {
+                        console.log('update done');
+                        reset()
+                        Swal.fire(
+                            'Register successful',
+                            'Your account has been create successfully',
+                            'success'
+                        )
+                    }).catch(error => console.log(error))
+            })
+            .catch(error => setFirebaseError(error))
     };
 
     const password = watch("password");
@@ -45,7 +52,7 @@ const Registration = () => {
                     'Welcome Back!',
                     'Login successful',
                     'success'
-                  )
+                )
                 // navigate(from)
             })
             .catch(error => {
@@ -66,6 +73,12 @@ const Registration = () => {
                         <img onClick={handleGoogle} className="w-8 cursor-pointer mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2008px-Google_%22G%22_Logo.svg.png" alt="" />
                     </div>
                     <div className="divider">OR</div>
+                    <div>
+                        <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">
+                            Your Name
+                        </label>
+                        <input {...register("name", { required: true })} type="text" name="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm px-8 rounded-full py-3 block w-full" placeholder="Your name" required />
+                    </div>
                     <div>
                         <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">
                             Your Email

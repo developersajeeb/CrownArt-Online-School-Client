@@ -44,7 +44,7 @@ const NavBar = () => {
                         {
                             user ?
                                 <>
-                                    {/* <img className='w-10 h-10 object-cover rounded-full cursor-pointer' src='' alt="User" /> */}
+                                    <img className='w-10 h-10 object-cover rounded-full cursor-pointer' src={user.photoURL} alt="User" />
                                     <button onClick={handleLogOut} className='primary-btn flex items-center gap-2'><FaSignOutAlt></FaSignOutAlt> Logout</button>
                                 </>
                                 :
@@ -75,7 +75,7 @@ const NavBar = () => {
                     {
                         user ?
                             <>
-                                {/* <img className='w-10 h-10 object-cover rounded-full cursor-pointer' src='' alt="User" /> */}
+                                <img className='w-10 h-10 object-cover rounded-full cursor-pointer' src={user.photoURL} alt="User" />
                                 <button onClick={handleLogOut} className='primary-btn flex items-center gap-2'><FaSignOutAlt></FaSignOutAlt> Logout</button>
                             </>
                             :
