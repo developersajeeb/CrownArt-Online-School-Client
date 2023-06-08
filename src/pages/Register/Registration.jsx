@@ -2,10 +2,11 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
+import Swal from "sweetalert2";
 
 const Registration = () => {
     const {createUser} = useContext(AuthContext);
-
+    const [firebaseError, setFirebaseError] = useState('');
     const [showError, setError] = useState(false);
     const {
         register,
@@ -23,7 +24,14 @@ const Registration = () => {
         .then(result => {
             const loggedUser = result.user;
             console.log(loggedUser);
+            setFirebaseError('')
+            Swal.fire(
+                'Register successful',
+                'Your account has been create successful',
+                'success'
+              )
         })
+        .catch(error => setFirebaseError(error))
     };
 
     const password = watch("password");
@@ -116,6 +124,7 @@ const Registration = () => {
                     >
                         Register
                     </button>
+                    {firebaseError ? <p className="text-center text-red-500">This email already in use</p> : ''}
                     <Link to="/login">
                         <div className="text-sm font-medium text-gray-500 dark:text-gray-300 mt-8 text-center">
                             Already registered? <span className="text-orange-600 hover:underline">Login</span>
