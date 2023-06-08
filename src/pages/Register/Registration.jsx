@@ -156,7 +156,7 @@ const Registration = () => {
                     {firebaseError ? <p className="text-center text-red-500">This email already in use</p> : ''}
                     <Link to="/login">
                         <div className="text-sm font-medium text-gray-500 dark:text-gray-300 mt-8 text-center">
-                            Already registered? <span className="text-orange-600 hover:underline">Login</span>
+                            Already registered? <p className="text-orange-600 hover:underline inline-block">Login</p>
                         </div>
                     </Link>
                 </form>

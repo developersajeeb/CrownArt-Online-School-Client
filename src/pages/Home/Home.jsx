@@ -3,6 +3,7 @@ import Slider from "./Slider";
 import { FaPalette, FaSchlix, FaDrawPolygon, FaUserAstronaut, FaSketch} from "react-icons/fa";
 
 const Home = () => {
+
     return (
         <>
             <header>
@@ -30,7 +31,7 @@ const Home = () => {
                     </div>
                 </section>
             </header>
-            <main className="px-4 py-20 md:p-32">
+            <main className="px-4 py-20 md:p-32 dark:bg-gray-900">
                 <SectionHeader miniTitle={'education'} bigTitle={'Popular Classes'}></SectionHeader>
             </main>
         </>

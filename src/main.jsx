@@ -6,12 +6,15 @@ import {
 } from "react-router-dom";
 import { router } from './routes/Router';
 import AuthProviders from './providers/AuthProviders';
+import { ThemeProvider } from './components/ThemeContext/ThemeContext';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AuthProviders>
-      <RouterProvider router={router} />
-    </AuthProviders>
+    <ThemeProvider>
+      <AuthProviders>
+        <RouterProvider router={router} />
+      </AuthProviders>
+    </ThemeProvider>
   </React.StrictMode>,
 )

@@ -22,7 +22,7 @@ const Footer = () => {
                         <li>Contact</li>
                     </ul>
                 </div>
-                <div className='text-center lg:border-r border-neutral-600 mt-8'>
+                <div className='text-center lg:border-r border-neutral-600 mt-8 md:mt-0'>
                     <h3 className='text-3xl mb-4'>Courses</h3>
                     <ul className='grid gap-1 text-gray-300'>
                         <li>Painting</li>
@@ -32,7 +32,7 @@ const Footer = () => {
                         <li>Digital</li>
                     </ul>
                 </div>
-                <div className='text-center md:border-r border-neutral-600 mt-8'>
+                <div className='text-center md:border-r border-neutral-600 mt-8 md:mt-0'>
                     <h3 className='text-3xl mb-4'>Contact</h3>
                     <ul className='grid gap-1 text-gray-300'>
                         <li>+8801743370840</li>
@@ -41,7 +41,7 @@ const Footer = () => {
                         <li>Chandpur Bangladesh</li>
                     </ul>
                 </div>
-                <div className='text-center mt-8'>
+                <div className='text-center mt-8 md:mt-0'>
                     <h3 className='text-3xl mb-4'>Socials</h3>
                     <ul className='grid gap-1 text-gray-300'>
                         <li>Facebook</li>

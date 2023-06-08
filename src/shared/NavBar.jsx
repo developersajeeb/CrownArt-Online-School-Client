@@ -4,10 +4,13 @@ import { Link, NavLink } from 'react-router-dom';
 import { FaSignOutAlt, FaUserFriends } from "react-icons/fa";
 import logo from '../assets/crown-logo.png'
 import { AuthContext } from '../providers/AuthProviders';
+import { ThemeContext } from '../components/ThemeContext/ThemeContext';
 
 const NavBar = () => {
     const { user, logOut } = useContext(AuthContext);
     const [isOpen, setOpen] = useState(false);
+    
+    const { themeColor, handleThemeSwitch } = useContext(ThemeContext);
 
     const handleLogOut = () => {
         logOut()
@@ -45,7 +48,7 @@ const NavBar = () => {
                             user ?
                                 <>
                                     <img className='w-10 h-10 object-cover rounded-full cursor-pointer' src={user.photoURL} alt="User" />
-                                    <button onClick={handleLogOut} className='primary-btn flex items-center gap-2'><FaSignOutAlt></FaSignOutAlt> Logout</button>
+                                    <button onClick={handleLogOut} className={`primary-btn flex items-center gap-2 ${themeColor === 'dark' ? 'bg-gray-200' : 'bg-gray-800'}`}><FaSignOutAlt></FaSignOutAlt> Logout</button>
                                 </>
                                 :
                                 <>
@@ -54,6 +57,10 @@ const NavBar = () => {
                                     </NavLink>
                                 </>
                         }
+                        <li className='text-center'>
+                            <input onClick={handleThemeSwitch} type="checkbox" className="toggle" defaultChecked />
+                            <p className='text-sm text-gray-400'>Dark/Light</p>
+                        </li>
                     </ul>
                 </div>
                 <ul className={`font-medium p-4 pt-3 grid gap-3 w-44 border text-center border-gray-300 rounded-lg bg-[#3F4138] md:hidden absolute duration-500 z-50 ${isOpen ? 'right-2 top-20' : 'hidden'}`}>
@@ -85,6 +92,10 @@ const NavBar = () => {
                                 </NavLink>
                             </>
                     }
+                    <li className='text-center'>
+                        <input type="checkbox" className="toggle" defaultChecked />
+                        <p className='text-sm text-gray-400'>Dark/Light</p>
+                    </li>
                 </ul>
             </div>
         </nav>

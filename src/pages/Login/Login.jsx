@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { AuthContext } from "../../providers/AuthProviders";
 import Swal from "sweetalert2";
@@ -10,6 +10,10 @@ const Login = () => {
     const [showError, setError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [firebaseError, setFirebaseError] = useState('');
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/';
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
@@ -24,6 +28,7 @@ const Login = () => {
                 'success'
               )
               setFirebaseError('');
+              navigate(from, {replace: true});
         })
         .catch(error => setFirebaseError(error))
     };
@@ -37,7 +42,7 @@ const Login = () => {
                     'Login successful',
                     'success'
                   )
-                // navigate(from)
+                  navigate(from, {replace: true});
             })
             .catch(error => {
                 console.log(error);
@@ -94,7 +99,7 @@ const Login = () => {
 
                     <Link to='/registration'>
                         <div className="text-sm font-medium text-gray-500 dark:text-gray-300 mt-8 text-center">
-                            Not registered? <span className="text-orange-600 hover:underline">Create account</span>
+                            Not registered? <p className="text-orange-600 hover:underline inline-block">Create account</p>
                         </div>
                     </Link>
                 </form>
