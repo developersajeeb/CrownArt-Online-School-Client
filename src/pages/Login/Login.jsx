@@ -7,7 +7,6 @@ import Swal from "sweetalert2";
 
 const Login = () => {
     const {singIn, googleSingIn} = useContext(AuthContext);
-    const [showError, setError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [firebaseError, setFirebaseError] = useState('');
     const navigate = useNavigate();
@@ -15,7 +14,7 @@ const Login = () => {
 
     const from = location.state?.from?.pathname || '/';
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit } = useForm();
     const onSubmit = data => {
         console.log(data)
         singIn(data.email, data.password)
@@ -69,9 +68,6 @@ const Login = () => {
                     <div>
                         <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">Your email</label>
                         <input {...register("email", { required: true })} type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm px-8 rounded-full py-3 block w-full" placeholder="name@mail.com" required></input>
-                        {
-                            showError ? <p className='mt-2 text-red-600'>User Not Found</p> : ''
-                        }
                     </div>
                     <div>
                         <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Your password</label>
@@ -81,9 +77,6 @@ const Login = () => {
                                 {showPassword ? <FaEyeSlash /> : <FaEye />}
                             </span>
                         </div>
-                        {
-                            showError ? <p className='mt-2 text-red-600'>Wrong Password</p> : ''
-                        }
                     </div>
                     <div className="flex items-start">
                         <div className="flex items-start">
@@ -95,7 +88,7 @@ const Login = () => {
                         <a href="#" className="ml-auto text-sm primary-color hover:underline">Lost Password?</a>
                     </div>
                     <button type="submit" className="primary-btn w-full">Login to your account</button>
-                    {firebaseError ? <p className="text-center text-red-500">User not found</p> : ''}
+                    {firebaseError ? <p className="text-center text-red-500">User not found with this email & password</p> : ''}
 
                     <Link to='/registration'>
                         <div className="text-sm font-medium text-gray-500 dark:text-gray-300 mt-8 text-center">
