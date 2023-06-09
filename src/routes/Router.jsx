@@ -10,6 +10,7 @@ import PrivateRoute from "./PrivateRoute";
 import DashboardMain from "../Layout/DashboardMain";
 import AddClass from "../pages/AddClass/AddClass";
 import Classes from "../pages/Classes/Classes";
+import ManageUsers from "../pages/ManageUsers/ManageUsers";
 
 export const router = createBrowserRouter([
     {
@@ -43,6 +44,11 @@ export const router = createBrowserRouter([
           {
             path: 'add-class',
             element: <AddClass></AddClass>
+          },
+          {
+            path: 'manage-users',
+            element: <ManageUsers></ManageUsers>,
+            loader: () => fetch('http://localhost:5000/users')
           }
       ]
     }

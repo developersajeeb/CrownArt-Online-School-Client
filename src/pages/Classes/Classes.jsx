@@ -1,10 +1,7 @@
-import { useContext } from 'react';
 import banner from '../../assets/slider/slider1.jpg'
 import SectionHeader from '../../components/SectionHeader';
-import { AuthContext } from '../../providers/AuthProviders';
 
 const Classes = () => {
-    const { user } = useContext(AuthContext);
 
     return (
         <>
@@ -21,11 +18,14 @@ const Classes = () => {
                         <h2 className='text-3xl font-bold mt-6'>Abstracting from the Image</h2>
 
                         <ul className='my-5'>
-                            <li className='flex gap-1 justify-center'><p className='primary-color font-semibold'>Instructor:</p> <p>{user.displayName}</p></li>
+                            <li className='flex gap-1 justify-center'><p className='primary-color font-semibold'>Instructor:</p> <p>Sajeeb</p></li>
                             <li className='flex gap-1 justify-center'><p className='primary-color font-semibold'>Available seats:</p> <p>20</p></li>
                         </ul>
 
-                        <h3 className='text-gray-400 text-2xl'><span className='primary-color text-3xl font-bold'>$250</span> /monthly</h3>
+                        <div className='flex justify-between items-center'>
+                            <button className='primary-btn'>Enroll</button>
+                            <h3 className='text-gray-400 text-2xl'><span className='primary-color text-3xl font-bold'>$250</span> /monthly</h3>
+                        </div>
                     </div>
                 </section>
             </main>

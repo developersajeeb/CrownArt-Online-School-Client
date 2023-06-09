@@ -23,7 +23,9 @@ a,
 label,
 input,
 li,
-textarea {
+textarea,
+th,
+tr {
   font-family: 'Roboto', sans-serif;
 }
 

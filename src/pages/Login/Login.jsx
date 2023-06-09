@@ -4,9 +4,10 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { AuthContext } from "../../providers/AuthProviders";
 import Swal from "sweetalert2";
+import SocialLogin from "../../shared/SocialLogin";
 
 const Login = () => {
-    const {singIn, googleSingIn} = useContext(AuthContext);
+    const {singIn} = useContext(AuthContext);
     const [showPassword, setShowPassword] = useState(false);
     const [firebaseError, setFirebaseError] = useState('');
     const navigate = useNavigate();
@@ -32,23 +33,6 @@ const Login = () => {
         .catch(error => setFirebaseError(error))
     };
 
-    const handleGoogle = () => {
-        googleSingIn()
-            .then(result => {
-                console.log('done', result);
-                Swal.fire(
-                    'Welcome Back!',
-                    'Login successful',
-                    'success'
-                  )
-                  navigate(from, {replace: true});
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }
-
-
     const handleTogglePassword = () => {
         setShowPassword(!showPassword);
     };
@@ -62,7 +46,7 @@ const Login = () => {
                     </div>
                     <div>
                         <p className="text-sm text-center text-gray-400 mb-3">Sing in with your social media account</p>
-                        <img onClick={handleGoogle} className='w-8 cursor-pointer mx-auto' src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2008px-Google_%22G%22_Logo.svg.png" alt="" />
+                        <SocialLogin></SocialLogin>
                     </div>
                     <div className="divider">OR</div>
                     <div>
