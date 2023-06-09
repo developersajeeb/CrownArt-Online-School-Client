@@ -9,6 +9,7 @@ import Registration from "../pages/Register/Registration";
 import PrivateRoute from "./PrivateRoute";
 import DashboardMain from "../Layout/DashboardMain";
 import AddClass from "../pages/AddClass/AddClass";
+import Classes from "../pages/Classes/Classes";
 
 export const router = createBrowserRouter([
     {
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
             path: 'registration',
             element: <Registration></Registration>
         },
+        {
+          path: 'classes',
+          element: <Classes></Classes>
+        }
       ],
     },
     {
