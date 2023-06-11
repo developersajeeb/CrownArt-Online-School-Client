@@ -35,6 +35,31 @@ const ManageUsers = () => {
             })
     }
 
+    const instructorHandle = (id, name) => {
+        fetch(`http://localhost:5000/user/instructor/${id}`, {
+            method: 'PATCH',
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount) {
+                    refetch();
+                    Swal.fire({
+                        title: 'Success!',
+                        text: `You successfully made ${name} an instructor`,
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'You can not make instructor',
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+            })
+    }
+
 
 
     return (
@@ -66,7 +91,12 @@ const ManageUsers = () => {
                                                 :
                                                 <button onClick={() => adminHandle(singleUser?._id, singleUser?.name)} className='primary-btn'>Make Admin</button>
                                         }
-                                        <button className="primary-btn ">Make Instructor</button>
+                                        {
+                                            singleUser.role === 'instructor' ?
+                                                <button onClick={() => instructorHandle(singleUser?._id, singleUser?.name)} disabled className='px-8 py-3 font-semibold bg-gray-200 rounded-full text-gray-400'>Already Instructor</button>
+                                                :
+                                                <button onClick={() => instructorHandle(singleUser?._id, singleUser?.name)} className='primary-btn'>Make Instructor</button>
+                                        }
                                     </td>
                                 </tr>)
                             }

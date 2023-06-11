@@ -21,23 +21,7 @@ const Login = () => {
         singIn(data.email, data.password)
         .then(result => {
             const user = result.user;
-
-            const loggedUser = {
-                email: user.email
-            }
-            console.log(loggedUser);
-
-            fetch('http://localhost:5000/jwt', {
-                method: 'POST',
-                headers: {
-                    'content-type' : 'application/json'
-                },
-                body: JSON.stringify(loggedUser)
-            })
-            .then(res => res.json())
-            .then(data => {
-                localStorage.setItem('access-token', data.token);
-            })
+            console.log(user);
 
             Swal.fire(
                 'Welcome Back!',

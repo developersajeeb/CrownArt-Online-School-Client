@@ -3,13 +3,14 @@ import logo from '../assets/crown-logo.png';
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProviders";
 import { FaUsersCog, FaArrowLeft, FaVideo, FaHome } from "react-icons/fa";
+import useAdmin from "../hooks/useAdmin";
+import useInstructor from "../hooks/useInstructor";
 
 const DashboardMain = () => {
     const { user } = useContext(AuthContext);
 
-    //TODO
-    const isAdmin = true;
-    const isInstructor = false;
+    const [isAdmin] = useAdmin();
+    const [isInstructor] = useInstructor();
 
     return (
         <div className="drawer lg:drawer-open">

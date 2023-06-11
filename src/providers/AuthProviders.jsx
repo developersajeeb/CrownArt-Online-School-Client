@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import {GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from 'firebase/auth';
+import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import app from "../firebase/firebase.config";
 
 export const AuthContext = createContext(null);
@@ -7,7 +7,7 @@ const auth = getAuth(app)
 const googleProvider = new GoogleAuthProvider();
 
 // eslint-disable-next-line react/prop-types
-const AuthProviders = ({children}) => {
+const AuthProviders = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -41,11 +41,31 @@ const AuthProviders = ({children}) => {
             setUser(currentUser);
             console.log(currentUser);
             setLoading(false);
+
+            if (currentUser && currentUser.email) {
+                const loggedUser = {
+                    email: currentUser.email
+                }
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(loggedUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem('access-token', data.token);
+                    })
+            } else {
+                localStorage.removeItem('access-token');
+            }
+
         });
         return () => {
             return unsubscribe();
         }
-    } ,[])
+    }, [])
 
     const authInfo = {
         user,
