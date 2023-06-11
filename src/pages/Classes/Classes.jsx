@@ -1,32 +1,32 @@
-import banner from '../../assets/slider/slider1.jpg'
+import { useLoaderData } from 'react-router-dom';
 import SectionHeader from '../../components/SectionHeader';
+import HeaderSection from '../../shared/HeaderSection';
 
 const Classes = () => {
+    const classes = useLoaderData();
 
     return (
         <>
-            <header className='bg-cover bg-center py-16 md:p-32' style={{ backgroundImage: `url(${banner})` }}>
-                <h1 className='text-white text-center text-5xl font-bold'>Classes</h1>
-            </header>
-            <main className='md:p-32'>
-                <SectionHeader miniTitle={'education'} bigTitle={'Full Time Courses'}></SectionHeader>
-                <section className='mt-10 grid md:grid-cols-2 lg:grid-cols-3'>
-                    <div className='text-center'>
-                        <figure>
-                            <img className='w-full h-56 object-cover rounded-lg' src="https://crown-art.ancorathemes.com/wp-content/uploads/2017/03/image-22-770x334.jpg" alt="" />
-                        </figure>
-                        <h2 className='text-3xl font-bold mt-6'>Abstracting from the Image</h2>
-
-                        <ul className='my-5'>
-                            <li className='flex gap-1 justify-center'><p className='primary-color font-semibold'>Instructor:</p> <p>Sajeeb</p></li>
-                            <li className='flex gap-1 justify-center'><p className='primary-color font-semibold'>Available seats:</p> <p>20</p></li>
-                        </ul>
-
-                        <div className='flex justify-between items-center'>
-                            <button className='primary-btn'>Enroll</button>
-                            <h3 className='text-gray-400 text-2xl'><span className='primary-color text-3xl font-bold'>$250</span> /monthly</h3>
-                        </div>
-                    </div>
+            <HeaderSection name={'Classes'}></HeaderSection>
+            <main className='p-4 md:p-32'>
+                <div className='my-14 md:my-0'>
+                    <SectionHeader miniTitle={'education'} bigTitle={'Full Time Courses'}></SectionHeader>
+                </div>
+                <section className='mt-0 md:mt-20 grid md:grid-cols-2 lg:grid-cols-3 gap-10'>
+                    {
+                        classes.map(singleClass => <div key={singleClass._id} className='text-center'>
+                            <figure className='relative'>
+                                <img className='w-full h-60 object-cover rounded-lg' src={singleClass.classImg} alt="" />
+                                <li className='flex gap-1 justify-center absolute bottom-2 left-2 text-white bg-black rounded-full px-3 py-1 text-sm'><p className='mini-header-color'>Instructor:</p> <p>{singleClass.instructorName}</p></li>
+                            </figure>
+                            <h2 className='text-3xl font-bold mt-6'>{singleClass.className}</h2>
+                            <ul>
+                                <li><h3 className='text-gray-400 text-2xl mt-2'><span className='primary-color text-3xl font-bold'>${singleClass.price}</span> /monthly</h3></li>
+                                <li className='flex gap-1 justify-center font-semibold'><p className='primary-color'>Available seats:</p> <p>{singleClass.availableSeats}</p></li>
+                                <li><button className='primary-btn mt-4'>Enroll</button></li>
+                            </ul>
+                        </div>)
+                    }
                 </section>
             </main>
         </>

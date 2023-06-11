@@ -34,7 +34,7 @@ const Registration = () => {
                         console.log('update done');
                         reset()
 
-                        const saveUser = { name: data.name, email: data.email, role: 'student' }
+                        const saveUser = { name: data.name, email: data.email, role: 'student', photo: data.photoUrl }
                         fetch('http://localhost:5000/users', {
                             method: 'POST',
                             headers: {

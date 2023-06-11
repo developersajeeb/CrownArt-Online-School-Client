@@ -9,15 +9,15 @@ const AdminRoute = ({ children }) => {
     const location = useLocation();
 
     if (loading || isAdminLoading) {
-        return <div className="fixed top-0 right-0 h-screen w-screen z-50 flex justify-center items-center">
-            <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
+        return <div className="h-screen flex justify-center items-center">
+            <span className="loading loading-dots w-20"></span>
         </div>
     }
     if (user && isAdmin) {
         return children;
     }
 
-    return <Navigate to='/' state={{from: location}} replace></Navigate>
+    return <Navigate to='/404' state={{ from: location }} replace></Navigate>
 };
 
 export default AdminRoute;

@@ -25,7 +25,7 @@ const DashboardMain = () => {
                     <Link to='/'><img className="w-56 mx-auto" src={logo} alt="" /></Link>
 
                     <div className="text-center mb-14 mt-16">
-                        <img className="w-32 h-32 rounded-full mx-auto mb-3" src={user?.photoURL} alt="" />
+                        <img className="w-32 h-32 rounded-full mx-auto mb-3 object-cover" src={user?.photoURL} alt="" />
                         <h3 className="text-2xl">{user?.displayName}</h3>
                         <p className="text-gray-300">{user?.email}</p>
                     </div>

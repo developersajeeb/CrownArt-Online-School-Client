@@ -60,8 +60,6 @@ const ManageUsers = () => {
             })
     }
 
-
-
     return (
         <main>
             <SectionHeader miniTitle={'all users'} bigTitle={'Manage Users'}></SectionHeader>
@@ -80,22 +78,22 @@ const ManageUsers = () => {
                         <tbody>
                             {
                                 userData?.map((singleUser, index) => <tr key={singleUser?._id}>
-                                    <th>{index++}</th>
+                                    <th>{index+1}</th>
                                     <td>{singleUser?.name}</td>
                                     <td>{singleUser?.email}</td>
                                     <td>{singleUser?.role}</td>
                                     <td className="flex gap-3">
                                         {
                                             singleUser.role === 'admin' ?
-                                                <button onClick={() => adminHandle(singleUser?._id, singleUser?.name)} disabled className='px-8 py-3 font-semibold bg-gray-200 rounded-full text-gray-400'>Already Admin</button>
+                                                <button onClick={() => adminHandle(singleUser?._id, singleUser?.name)} disabled className='px-4 py-2 font-semibold bg-gray-200 rounded-full text-gray-400'>Already Admin</button>
                                                 :
-                                                <button onClick={() => adminHandle(singleUser?._id, singleUser?.name)} className='primary-btn'>Make Admin</button>
+                                                <button onClick={() => adminHandle(singleUser?._id, singleUser?.name)} className='table-btn'>Make Admin</button>
                                         }
                                         {
                                             singleUser.role === 'instructor' ?
-                                                <button onClick={() => instructorHandle(singleUser?._id, singleUser?.name)} disabled className='px-8 py-3 font-semibold bg-gray-200 rounded-full text-gray-400'>Already Instructor</button>
+                                                <button onClick={() => instructorHandle(singleUser?._id, singleUser?.name)} disabled className='px-4 py-2 font-semibold bg-gray-200 rounded-full text-gray-400'>Already Instructor</button>
                                                 :
-                                                <button onClick={() => instructorHandle(singleUser?._id, singleUser?.name)} className='primary-btn'>Make Instructor</button>
+                                                <button onClick={() => instructorHandle(singleUser?._id, singleUser?.name)} className='table-btn'>Make Instructor</button>
                                         }
                                     </td>
                                 </tr>)

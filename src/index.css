@@ -40,3 +40,7 @@ tr {
 .primary-btn{
   @apply bg-[#d05b2d] px-8 py-3 font-semibold text-white rounded-full hover:bg-[#febb64] duration-300 hover:text-black;
 }
+
+.table-btn{
+  @apply bg-[#d05b2d] px-4 py-2 font-semibold text-white rounded-full hover:bg-[#febb64] duration-300 hover:text-black;
+}
