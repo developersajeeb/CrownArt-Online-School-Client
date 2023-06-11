@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import Swal from "sweetalert2";
 import SocialLogin from "../../shared/SocialLogin";
@@ -16,6 +16,7 @@ const Registration = () => {
         reset,
         formState: { errors },
     } = useForm();
+    const navigate = useNavigate();
 
     const onSubmit = (data) => {
         if (data.password !== data.confirmPass) {
@@ -32,11 +33,26 @@ const Registration = () => {
                     .then(() => {
                         console.log('update done');
                         reset()
-                        Swal.fire(
-                            'Register successful',
-                            'Your account has been create successfully',
-                            'success'
-                        )
+
+                        const saveUser = { name: data.name, email: data.email, role: 'student' }
+                        fetch('http://localhost:5000/users', {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(saveUser)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                console.log(data);
+                                Swal.fire(
+                                    'Register successful',
+                                    'Your account has been create successfully',
+                                    'success'
+                                )
+                                navigate('/');
+                            })
+
                     }).catch(error => console.log(error))
             })
             .catch(error => setFirebaseError(error))

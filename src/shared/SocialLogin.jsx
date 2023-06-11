@@ -15,7 +15,7 @@ const SocialLogin = () => {
             .then(result => {
                 const loggedInUser = result.user;
                 console.log(loggedInUser);
-                const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email }
+                const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email, role: 'student' }
                 fetch('http://localhost:5000/users', {
                     method: 'POST',
                     headers: {
@@ -32,6 +32,23 @@ const SocialLogin = () => {
                             'success'
                         )
                         navigate(from, { replace: true });
+                    })
+
+                    const loggedUser = {
+                        email: loggedInUser.email
+                    }
+                    console.log(loggedUser);
+        
+                    fetch('http://localhost:5000/jwt', {
+                        method: 'POST',
+                        headers: {
+                            'content-type' : 'application/json'
+                        },
+                        body: JSON.stringify(loggedUser)
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem('access-token', data.token);
                     })
 
 

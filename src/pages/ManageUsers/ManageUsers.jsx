@@ -1,40 +1,26 @@
-import { useLoaderData } from "react-router-dom";
 import SectionHeader from "../../components/SectionHeader";
-import { useContext } from "react";
-import { AuthContext } from "../../providers/AuthProviders";
 import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 
 const ManageUsers = () => {
-    const userData = useLoaderData();
-    const { user } = useContext(AuthContext);
+    // const userData = useLoaderData();
+    const { data: userData = [], refetch } = useQuery(['userData'], async () => {
+        const res = await fetch('http://localhost:5000/users');
+        const data = await res.json();
+        return data;
+      });
 
-    const { data } = useQuery({
-        queryKey: ['user'],
-        queryFn: async () => {
-            const response = await axios(`http://localhost:5000/user/admin?email=${user?.email}`);
-            return response.data
-            }
-    });
-    console.log(data);
-
-    const adminHandle = (email) => {
-        const saveAdmin = { email: email, role: 'admin' };
-        fetch('http://localhost:5000/user/admin', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(saveAdmin)
+    const adminHandle = (id, name) => {
+        fetch(`http://localhost:5000/user/admin/${id}`, {
+            method: 'PATCH',
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
-                if (data.insertedId) {
+                if (data.modifiedCount) {
+                    refetch();
                     Swal.fire({
                         title: 'Success!',
-                        text: `You successfully made ${user.displayName} an admin`,
+                        text: `You successfully made ${name} an admin`,
                         icon: 'success',
                         confirmButtonText: 'Ok'
                     })
@@ -62,6 +48,7 @@ const ManageUsers = () => {
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -71,9 +58,15 @@ const ManageUsers = () => {
                                     <th>{index++}</th>
                                     <td>{singleUser?.name}</td>
                                     <td>{singleUser?.email}</td>
+                                    <td>{singleUser?.role}</td>
                                     <td className="flex gap-3">
-                                        <button onClick={() => adminHandle(singleUser?.email)} className="primary-btn">Make Admin</button>
-                                        <button className="primary-btn">Make Instructor</button>
+                                        {
+                                            singleUser.role === 'admin' ?
+                                                <button onClick={() => adminHandle(singleUser?._id, singleUser?.name)} disabled className='px-8 py-3 font-semibold bg-gray-200 rounded-full text-gray-400'>Already Admin</button>
+                                                :
+                                                <button onClick={() => adminHandle(singleUser?._id, singleUser?.name)} className='primary-btn'>Make Admin</button>
+                                        }
+                                        <button className="primary-btn ">Make Instructor</button>
                                     </td>
                                 </tr>)
                             }
