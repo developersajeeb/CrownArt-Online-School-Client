@@ -16,6 +16,7 @@ import AdminRoute from "./AdminRoute";
 import Instructors from "../pages/Instructors/Instructors";
 import MyClasses from "../pages/MyClasses/MyClasses";
 import UpdateClass from "../pages/UpdateClass/UpdateClass";
+import ManageClasses from "../pages/ManageClasses/ManageClasses";
 
 export const router = createBrowserRouter([
     {
@@ -38,7 +39,7 @@ export const router = createBrowserRouter([
         {
           path: 'classes',
           element: <Classes></Classes>,
-          loader: () => fetch('http://localhost:5000/classes')
+          loader: () => fetch('http://localhost:5000/approved-classes/approve')
         },
         {
           path: '404',
@@ -73,6 +74,10 @@ export const router = createBrowserRouter([
             path: 'my-classes/class/:id',
             element: <InstructorRoute><UpdateClass></UpdateClass></InstructorRoute>,
             loader: ({params}) => fetch(`http://localhost:5000/class/${params.id}`)
+          },
+          {
+            path: 'manage-classes',
+            element: <AdminRoute><ManageClasses></ManageClasses></AdminRoute>
           }
       ]
     }

@@ -42,9 +42,9 @@ const UpdateClass = () => {
                     form.reset();
                 } else {
                     Swal.fire({
-                        title: 'Error!',
-                        text: 'You have not been able to update the class info',
-                        icon: 'error',
+                        title: 'Warning!',
+                        text: 'Please change some info',
+                        icon: 'warning',
                         confirmButtonText: 'Ok'
                     })
                 }

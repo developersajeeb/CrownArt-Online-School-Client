@@ -3,7 +3,6 @@ import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
 
 const ManageUsers = () => {
-    // const userData = useLoaderData();
     const { data: userData = [], refetch } = useQuery(['userData'], async () => {
         const res = await fetch('http://localhost:5000/users');
         const data = await res.json();

@@ -24,6 +24,7 @@ const MyClasses = () => {
                             <th>#</th>
                             <th>Class Name</th>
                             <th>Available Seats</th>
+                            <th>Total Enroll</th>
                             <th>Price</th>
                             <th>Status</th>
                             <th>Action</th>
