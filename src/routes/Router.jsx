@@ -15,6 +15,7 @@ import InstructorRoute from "./InstructorRoute";
 import AdminRoute from "./AdminRoute";
 import Instructors from "../pages/Instructors/Instructors";
 import MyClasses from "../pages/MyClasses/MyClasses";
+import UpdateClass from "../pages/UpdateClass/UpdateClass";
 
 export const router = createBrowserRouter([
     {
@@ -66,7 +67,12 @@ export const router = createBrowserRouter([
           },
           {
             path: 'my-classes',
-            element: <MyClasses></MyClasses>
+            element: <InstructorRoute><MyClasses></MyClasses></InstructorRoute>
+          },
+          {
+            path: 'my-classes/class/:id',
+            element: <InstructorRoute><UpdateClass></UpdateClass></InstructorRoute>,
+            loader: ({params}) => fetch(`http://localhost:5000/class/${params.id}`)
           }
       ]
     }
