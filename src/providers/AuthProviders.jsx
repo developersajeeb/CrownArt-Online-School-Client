@@ -10,6 +10,7 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProviders = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [paymentPrice, setPaymentPrice] = useState(0);
 
     const createUser = (email, password) => {
         setLoading(true);
@@ -46,7 +47,7 @@ const AuthProviders = ({ children }) => {
                 const loggedUser = {
                     email: currentUser.email
                 }
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://assigment-12-server-nu.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -74,7 +75,9 @@ const AuthProviders = ({ children }) => {
         singIn,
         logOut,
         googleSingIn,
-        updateUserProfile
+        updateUserProfile,
+        paymentPrice,
+        setPaymentPrice
     }
 
     return (

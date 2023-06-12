@@ -22,7 +22,7 @@ const UpdateClass = () => {
         const description = form.description.value;
         const updateClassInfo = { className, classImg, instructorName, instructorEmail, availableSeats, price, description };
 
-        fetch(`http://localhost:5000/class/${_id}`, {
+        fetch(`https://assigment-12-server-nu.vercel.app/class/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

@@ -4,13 +4,13 @@ import { useQuery } from "@tanstack/react-query";
 
 const ManageUsers = () => {
     const { data: userData = [], refetch } = useQuery(['userData'], async () => {
-        const res = await fetch('http://localhost:5000/users');
+        const res = await fetch('https://assigment-12-server-nu.vercel.app/users');
         const data = await res.json();
         return data;
       });
 
     const adminHandle = (id, name) => {
-        fetch(`http://localhost:5000/user/admin/${id}`, {
+        fetch(`https://assigment-12-server-nu.vercel.app/user/admin/${id}`, {
             method: 'PATCH',
         })
             .then(res => res.json())
@@ -35,7 +35,7 @@ const ManageUsers = () => {
     }
 
     const instructorHandle = (id, name) => {
-        fetch(`http://localhost:5000/user/instructor/${id}`, {
+        fetch(`https://assigment-12-server-nu.vercel.app/user/instructor/${id}`, {
             method: 'PATCH',
         })
             .then(res => res.json())

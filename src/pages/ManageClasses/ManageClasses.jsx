@@ -1,16 +1,23 @@
 import { useQuery } from "@tanstack/react-query";
 import SectionHeader from "../../components/SectionHeader";
 import Swal from "sweetalert2";
+import { useState } from "react";
 
 const ManageClasses = () => {
+    const [feedbackFormVisible, setFeedbackFormVisible] = useState(false);
+
+    const showFeedbackForm = () => {
+        setFeedbackFormVisible(true);
+    };
+
     const { data: classData = [], refetch } = useQuery(['classData'], async () => {
-        const res = await fetch('http://localhost:5000/classes');
+        const res = await fetch('https://assigment-12-server-nu.vercel.app/classes');
         const data = await res.json();
         return data;
     });
 
     const approveHandle = (id) => {
-        fetch(`http://localhost:5000/class/approve/${id}`, {
+        fetch(`https://assigment-12-server-nu.vercel.app/class/approve/${id}`, {
             method: 'PATCH',
         })
             .then(res => res.json())
@@ -35,7 +42,7 @@ const ManageClasses = () => {
     }
 
     const denyHandle = (id) => {
-        fetch(`http://localhost:5000/class/deny/${id}`, {
+        fetch(`https://assigment-12-server-nu.vercel.app/class/deny/${id}`, {
             method: 'PATCH',
         })
             .then(res => res.json())
@@ -58,6 +65,41 @@ const ManageClasses = () => {
                     })
                 }
             })
+    }
+
+    const handleFeedback = event => {
+        event.preventDefault();
+        const form = event.target;
+        const feedback = form.feedback.value;
+
+        fetch('https://assigment-12-server-nu.vercel.app/feedback', {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({ feedback })
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.insertedId) {
+                    Swal.fire({
+                        title: 'Feedback Send!',
+                        text: 'You successfully send a feedback',
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+                    form.reset();
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'You have not been able to send the feedback',
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }
+            })
+            setFeedbackFormVisible(false);
     }
 
     return (
@@ -86,7 +128,14 @@ const ManageClasses = () => {
                                 <td>{singleClass.price}</td>
                                 <td className="capitalize">{singleClass.classStatus}</td>
                                 <td className="flex gap-4">
-                                    <button className="table-btn" onClick={() => window.my_modal_3.showModal()}>Add Feedback</button>
+                                    <div className="">
+                                        <button className="table-btn relative" onClick={() => showFeedbackForm()}>Add Feedback</button>
+                                        <form className={`modal-box absolute z-10 right-8 ${feedbackFormVisible ? 'visible' : 'hidden'}`} onSubmit={handleFeedback}>
+                                            <h3 className="font-bold text-xl">Add Feedback</h3>
+                                            <textarea className="border-2 rounded-lg w-full border-gray-400 p-2" name="feedback" id="feedback" cols="30" rows="10" required></textarea>
+                                            <button className="primary-btn mt-3" type="submit">Submit</button>
+                                        </form>
+                                    </div>
                                     {
                                         singleClass.classStatus === 'approve' ?
                                             <button disabled className='px-4 py-2 font-semibold bg-gray-200 rounded-full text-gray-400'>Approved</button>
@@ -109,13 +158,6 @@ const ManageClasses = () => {
                     </tbody>
                 </table>
             </section>
-            <dialog id="my_modal_3" className="modal">
-                <form method="dialog" className="modal-box">
-                    <button htmlFor="my-modal-3" className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                    <h3 className="font-bold text-xl">Add Feedback</h3>
-                    <textarea className="border-2 rounded-lg w-full border-gray-400 p-2" name="feedback" id="feedback" cols="30" rows="10"></textarea>
-                </form>
-            </dialog>
         </main>
     );
 };

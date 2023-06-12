@@ -19,7 +19,7 @@ const AddClass = () => {
         const classStatus = 'pending'
         const newClassInfo = { className, classImg, instructorName, instructorEmail, availableSeats, price, description, classStatus };
 
-        fetch('http://localhost:5000/classes', {
+        fetch('https://assigment-12-server-nu.vercel.app/classes', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

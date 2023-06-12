@@ -15,7 +15,7 @@ const SocialLogin = () => {
             .then(result => {
                 const loggedInUser = result.user;
                 const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email, role: 'student', photo: loggedInUser.photoURL }
-                fetch('http://localhost:5000/users', {
+                fetch('https://assigment-12-server-nu.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -38,7 +38,7 @@ const SocialLogin = () => {
                     }
                     console.log(loggedUser);
         
-                    fetch('http://localhost:5000/jwt', {
+                    fetch('https://assigment-12-server-nu.vercel.app/jwt', {
                         method: 'POST',
                         headers: {
                             'content-type' : 'application/json'

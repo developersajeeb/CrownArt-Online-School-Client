@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 const TableData = ({ singleClass, index }) => {
     // eslint-disable-next-line react/prop-types
     const { _id, className, availableSeats, price, classStatus } = singleClass;
+    console.log(singleClass);
 
     return (
         <>

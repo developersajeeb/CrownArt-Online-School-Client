@@ -17,6 +17,8 @@ import Instructors from "../pages/Instructors/Instructors";
 import MyClasses from "../pages/MyClasses/MyClasses";
 import UpdateClass from "../pages/UpdateClass/UpdateClass";
 import ManageClasses from "../pages/ManageClasses/ManageClasses";
+import MySelectClasses from "../pages/MySelectClasses/MySelectClasses";
+import Payment from "../pages/Payment/Payment";
 
 export const router = createBrowserRouter([
     {
@@ -39,7 +41,7 @@ export const router = createBrowserRouter([
         {
           path: 'classes',
           element: <Classes></Classes>,
-          loader: () => fetch('http://localhost:5000/approved-classes/approve')
+          loader: () => fetch('https://assigment-12-server-nu.vercel.app/approved-classes/approve')
         },
         {
           path: '404',
@@ -48,7 +50,7 @@ export const router = createBrowserRouter([
         {
           path: 'instructors',
           element: <Instructors></Instructors>,
-          loader: () => fetch('http://localhost:5000/user-type/instructor')
+          loader: () => fetch('https://assigment-12-server-nu.vercel.app/user-type/instructor')
         }
       ],
     },
@@ -64,7 +66,7 @@ export const router = createBrowserRouter([
           {
             path: 'manage-users',
             element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>,
-            loader: () => fetch('http://localhost:5000/users')
+            loader: () => fetch('https://assigment-12-server-nu.vercel.app/users')
           },
           {
             path: 'my-classes',
@@ -73,11 +75,19 @@ export const router = createBrowserRouter([
           {
             path: 'my-classes/class/:id',
             element: <InstructorRoute><UpdateClass></UpdateClass></InstructorRoute>,
-            loader: ({params}) => fetch(`http://localhost:5000/class/${params.id}`)
+            loader: ({params}) => fetch(`https://assigment-12-server-nu.vercel.app/class/${params.id}`)
           },
           {
             path: 'manage-classes',
             element: <AdminRoute><ManageClasses></ManageClasses></AdminRoute>
+          },
+          {
+            path: 'my-enrolled-classes',
+            element: <MySelectClasses></MySelectClasses>
+          },
+          {
+            path: 'payment',
+            element: <Payment></Payment>
           }
       ]
     }

@@ -1,30 +1,31 @@
 import { useContext, useEffect, useState } from "react";
 import SectionHeader from "../../components/SectionHeader";
 import { AuthContext } from "../../providers/AuthProviders";
-import TableData from "./TableData";
+import { Link } from "react-router-dom";
 
 
-const MyClasses = () => {
+const MySelectClasses = () => {
     const { user } = useContext(AuthContext);
-    const [myClasses, setMyClasses] = useState([]);
+    const [myEnrollClasses, setMyEnrollClasses] = useState([]);
+    const {setPaymentPrice} = useContext(AuthContext)
+
 
     useEffect(() => {
-        fetch(`https://assigment-12-server-nu.vercel.app/my-classes?email=${user.email}`)
+        fetch(`https://assigment-12-server-nu.vercel.app/my-enroll-classes?email=${user.email}`)
             .then(res => res.json())
-            .then(data => setMyClasses(data))
+            .then(data => setMyEnrollClasses(data))
     }, [user])
 
     return (
         <main>
-            <SectionHeader miniTitle={'all class'} bigTitle={'My Classes'}></SectionHeader>
+            <SectionHeader miniTitle={'my all selected class'} bigTitle={'My Classes'}></SectionHeader>
             <section className="overflow-x-auto mt-10">
                 <table className="table table-zebra">
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Class Name</th>
-                            <th>Available Seats</th>
-                            <th>Total Enroll</th>
+                            <th>Instructor</th>
                             <th>Price</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -32,10 +33,19 @@ const MyClasses = () => {
                     </thead>
                     <tbody>
                         {
-                            myClasses?.map((singleClass, index) => <TableData
-                                key={singleClass._id}
-                                singleClass={singleClass}
-                                index={index}></TableData>)
+                            myEnrollClasses?.map((singleClass, index) => <tr key={singleClass._id}>
+                                <th>{index + 1}</th>
+                                <td>{singleClass.className}</td>
+                                <td>{singleClass.instructorName}</td>
+                                <td>${singleClass.price}</td>
+                                <td>{singleClass.payment}</td>
+                                <td className="flex gap-2">
+                                    <button className="table-btn">Delete</button>
+                                    <Link to='/dashboard/payment'>
+                                        <button onClick={() => setPaymentPrice(singleClass.price)} className="table-btn">Pay</button>
+                                    </Link>
+                                </td>
+                            </tr>)
                         }
                     </tbody>
                 </table>
@@ -53,4 +63,4 @@ const MyClasses = () => {
     );
 };
 
-export default MyClasses;
+export default MySelectClasses;
